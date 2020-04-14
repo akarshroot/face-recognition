@@ -6,15 +6,13 @@ import numpy as np
 video_capture = cv2.VideoCapture(0)
 
 # Load a sample picture and learn how to recognize it.
-modi_image = face_recognition.load_image_file("modi.jpg")
+modi_image = face_recognition.load_image_file("Narendra_Modi.jpg")
 modi_face_encoding = face_recognition.face_encodings(modi_image)[0]
 
-#
-akshay_image = face_recognition.load_image_file("akshay.jpg")
+akshay_image = face_recognition.load_image_file("Akshay_Kumar.jpg")
 akshay_face_encoding = face_recognition.face_encodings(akshay_image)[0]
 
-# Load a second sample picture and learn how to recognize it.
-pankaj_image = face_recognition.load_image_file("pankaj.jpg")
+pankaj_image = face_recognition.load_image_file("Pankaj_Tripathi.jpg")
 pankaj_face_encoding = face_recognition.face_encodings(pankaj_image)[0]
 
 # Create arrays of known face encodings and their names
