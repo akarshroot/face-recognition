@@ -18,10 +18,13 @@ known_face_encodings = [
     biden_face_encoding,
     obama_face_encoding
 ]
-known_face_names = [
-    "Biden",
-    "Obama"
-]
+fileObj = open("KnownNames.txt", "r") #opens the file in read mode.
+known_face_names = fileObj.read().splitlines() #puts the file into an array.
+fileObj. close()
+# known_face_names = [
+#     "Biden",
+#     "Obama"
+# ]
 
 # Initialize some variables
 face_locations = []
