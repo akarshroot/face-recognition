@@ -13,7 +13,7 @@ pip3 install face_recognition
 </code><br/>
 <code>
 pip3 install numpy
-</code>
+</code><br/>
 <code>
 pip install opencv-python
 </code>
