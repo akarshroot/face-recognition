@@ -10,6 +10,12 @@ Make sure you have dlib installed with your python bindings. If not, try running
 To install the dependencies run the following commands in your command line/terminal:<br/>
 <code>
 pip3 install face_recognition
+</code><br/>
+<code>
+pip3 install numpy
+</code>
+<code>
+pip install opencv-python
 </code>
 
 ## Demo
