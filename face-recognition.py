@@ -6,25 +6,23 @@ import numpy as np
 video_capture = cv2.VideoCapture(0)
 
 #
-obama_image = face_recognition.load_image_file("obama.jpg")
-obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
+
+filePathObj = open("PathToImages.txt", "r") #opens the file in read mode.
+filepaths = filePathObj.read().splitlines() #puts the file into an array.
+filePathObj. close()
+known_face_encodings = []
+for i in filepaths:
+    load_image = face_recognition.load_image_file(i)
+    image_face_encoding = face_recognition.face_encodings(load_image)[0]
+    known_face_encodings.append(image_face_encoding)
 
 # Load a second sample picture and learn how to recognize it.
-biden_image = face_recognition.load_image_file("biden.jpg")
-biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
+# biden_image = face_recognition.load_image_file("biden.jpg")
+# biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
 
-# Create arrays of known face encodings and their names
-known_face_encodings = [
-    biden_face_encoding,
-    obama_face_encoding
-]
-fileObj = open("KnownNames.txt", "r") #opens the file in read mode.
-known_face_names = fileObj.read().splitlines() #puts the file into an array.
-fileObj. close()
-# known_face_names = [
-#     "Biden",
-#     "Obama"
-# ]
+namesObj = open("KnownNames.txt", "r") #opens the file in read mode.
+known_face_names = namesObj.read().splitlines() #puts the file into an array.
+namesObj. close()
 
 # Initialize some variables
 face_locations = []
