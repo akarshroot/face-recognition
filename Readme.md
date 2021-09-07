@@ -16,6 +16,9 @@ pip3 install numpy
 </code><br/>
 <code>
 pip install opencv-python
+</code><br/>
+<code>
+pip install imutils
 </code>
 
 ## Demo
