@@ -47,8 +47,8 @@ class WebcamVideoStream:
 #
 
 filePathObj = open("PathToImages.txt", "r") #opens the file in read mode.
-filepaths = filePathObj.read().splitlines() #puts the file into an array.
-filePathObj. close()
+filepaths = filePathObj.read().splitlines() #puts the file into a list.
+filePathObj.close()
 known_face_encodings = []
 for i in filepaths:
     load_image = face_recognition.load_image_file(i)
@@ -60,8 +60,12 @@ for i in filepaths:
 # biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
 
 namesObj = open("KnownNames.txt", "r") #opens the file in read mode.
-known_face_names = namesObj.read().splitlines() #puts the file into an array.
-namesObj. close()
+known_face_names = namesObj.read().splitlines() #puts the file into a list.
+namesObj.close()
+
+dataObj = open("KnownData.txt", "r") #opens the file in read mode.
+known_data = dataObj.read().splitlines() #puts the file into a list.
+dataObj.close()
 
 # Initialize some variables
 face_locations = []
@@ -120,12 +124,47 @@ while True:
         left *= 4
 
         # Draw a box around the face
-        cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
-
+        cv2.rectangle(frame, ((left + 5, top + 5)), (right + 5, bottom + 5), (189, 195, 199), 2)
+        (width_of_name_container, height_of_name_container), size_of_name_container = cv2.getTextSize(name, cv2.FONT_HERSHEY_DUPLEX, 0.75, 1)
+        
+        #centre the name in box
+        adjuster = 0
+        if(width_of_name_container + 30 < 165):
+            adjuster = 82 - width_of_name_container//2
+            width_of_name_container = 165
+            
         # Draw a label with a name below the face
-        cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
+        # cv2.rectangle(frame, (left + 5, bottom - 30), (right + 5, bottom + 5), (89, 216, 250), cv2.FILLED)
+        cv2.rectangle(frame, (right + 5, top + 4), (right + width_of_name_container + 35, top + 40), (89, 216, 250), cv2.FILLED)
         font = cv2.FONT_HERSHEY_DUPLEX
-        cv2.putText(frame, name, (left + 6, bottom - 6), font, 0.5, (255, 255, 255), 1)
+        person_data = []
+        #display image in db
+        if(name != "Unknown"):
+            name_index = 0
+            for i in range(0, len(known_face_names)):
+                if(name == known_face_names[i]):
+                    name_index = i
+            person_data = known_data[name_index]
+            person_data = person_data.split(", ")
+
+
+            path_to_img = filepaths[name_index]
+            db_img = cv2.imread(path_to_img)
+            db_img = cv2.resize(db_img,(150,150))
+            x_offset_db_img = right + width_of_name_container//2 + 20 - 75 #centre the db image
+            y_offset_db_img = top - 146
+            x_end = x_offset_db_img + db_img.shape[1]
+            y_end = y_offset_db_img + db_img.shape[0]
+            if((y_offset_db_img < frame.shape[1]) and (y_offset_db_img > 0) and (x_offset_db_img < frame.shape[0]) and (x_offset_db_img > 0)):
+                frame[y_offset_db_img:y_end, x_offset_db_img:x_end] = db_img
+            
+                    
+        # cv2.putText(frame, name, (left + 6, bottom - 6), font, 0.75, (0, 84, 211), 1)
+        cv2.putText(frame, name, (right + adjuster + 20, top + 35), font, 0.75, (0, 84, 211), 1)
+        it = 0
+        for i in person_data:
+            it += (height_of_name_container + 5)
+            cv2.putText(frame, i, (right + 20, top + 45 + it), font, 0.5, (255, 255, 255), 1)
 
     # Display the resulting image
     cv2.imshow('LiveFeed', frame)

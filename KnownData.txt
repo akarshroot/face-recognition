@@ -1,0 +1,3 @@
+46th US President, Age: 78, Gender: Male, Race: White
+44th US President, Age: 60, Gender: Male, Race: African American
+Student, Age: 19, Gender: Male, Race: South Asian

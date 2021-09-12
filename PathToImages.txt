@@ -1,2 +1,3 @@
-biden.jpg
-obama.jpg
+image-data/biden.jpg
+image-data/obama.jpg
+image-data/my.jpg
