@@ -29,5 +29,7 @@ Once done, launch face-recognition.py from command line by using <br/>
 <code>
 python face-recognition.py
 </code>
-![Demo-Screenshot](https://github.com/akarshroot/face-recognition/blob/master/screenshots/ss.png?raw=true)
-
+<br>
+<p align="center">
+<img src="https://github.com/akarshroot/face-recognition/blob/master/screenshots/ss.png?raw=true" alt="Demo-Screenshot" width="601px" height="480px">
+</p>
