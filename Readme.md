@@ -1,5 +1,5 @@
-# face-recognition
-This is a simple python project to detect known faces in real-time using a webcam and the face-recogintion library.
+# face-recognition (Face Logger Version)
+An extension to the original face-recognition program, this version also logs the face of the individual along with the date and time.
 
 Compatible with both windows and linux.
 Windows users should use Anaconda and create a new environment before proceeding. <br/>
