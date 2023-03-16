@@ -5,7 +5,6 @@ import numpy as np
 import os
 from threading import Thread
 from datetime import datetime
-from datetime import date
 
 class WebcamVideoStream:
 	def __init__(self, src=0):
@@ -86,7 +85,10 @@ vs = WebcamVideoStream(src=0).start()
 
 os.system( 'cls' )
 faceLog = []
+logs = []
 print("Attendance Logs: ")
+date = datetime.now().strftime("%d-%m-%y")
+
 while True:
     #OLD METHOD LOW FPS No Threading
     #ret, frame = video_capture.read()
@@ -131,6 +133,7 @@ while True:
         if(name not in faceLog):
             print("Logged " + name + datetime.now().strftime(" at %H:%M:%S on %d/%m/%Y"))
             faceLog.append(name)
+            logs.append("Logged " + name + datetime.now().strftime(" at %H:%M:%S on %d/%m/%Y"))
         # Scale back up face locations since the frame we detected in was scaled to 1/4 size
         top *= 4
         right *= 4
@@ -186,9 +189,19 @@ while True:
     # Hit 'q' on the keyboard to quit!
     if cv2.waitKey(1) & 0xFF == ord('q'):
         faceLog = []
+        os.system("cls")
+        print("Saving logs...")
+        with open("attendance-logs/" + date + ".txt", 'w') as f:
+                f.write("ATTENDANCE LOGS FOR " + date + "\n")
+                for line in logs:
+                    f.write(line + "\n")
+        logs = []
+        print("Stopping Webcam...")
+        os.system("cls")
         break
 
 # Release handle to the webcam
 # video_capture.release()
 vs.stop()
 cv2.destroyAllWindows()
+os.system("notepad.exe attendance-logs/" + datetime.now().strftime("%d-%m-%y.txt"))
