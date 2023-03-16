@@ -2,7 +2,10 @@ from imutils.video import WebcamVideoStream
 import face_recognition
 import cv2
 import numpy as np
+import os
 from threading import Thread
+from datetime import datetime
+from datetime import date
 
 class WebcamVideoStream:
 	def __init__(self, src=0):
@@ -50,11 +53,17 @@ filePathObj = open("PathToImages.txt", "r") #opens the file in read mode.
 filepaths = filePathObj.read().splitlines() #puts the file into a list.
 filePathObj.close()
 known_face_encodings = []
+it = 1
 for i in filepaths:
+    os.system( 'cls' )
+    print("Loading: ",  round(it/len(filepaths)*100, 2), "%")
     load_image = face_recognition.load_image_file(i)
+    it += 1
     image_face_encoding = face_recognition.face_encodings(load_image)[0]
     known_face_encodings.append(image_face_encoding)
 
+os.system( 'cls' )
+print("Database Loaded! Starting Camera...")
 # Load a second sample picture and learn how to recognize it.
 # biden_image = face_recognition.load_image_file("biden.jpg")
 # biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
@@ -75,7 +84,9 @@ process_this_frame = True
 
 vs = WebcamVideoStream(src=0).start()
 
-
+os.system( 'cls' )
+faceLog = []
+print("Attendance Logs: ")
 while True:
     #OLD METHOD LOW FPS No Threading
     #ret, frame = video_capture.read()
@@ -117,6 +128,9 @@ while True:
 
     # Display the results
     for (top, right, bottom, left), name in zip(face_locations, face_names):
+        if(name not in faceLog):
+            print("Logged " + name + datetime.now().strftime(" at %H:%M:%S on %d/%m/%Y"))
+            faceLog.append(name)
         # Scale back up face locations since the frame we detected in was scaled to 1/4 size
         top *= 4
         right *= 4
@@ -171,6 +185,7 @@ while True:
 
     # Hit 'q' on the keyboard to quit!
     if cv2.waitKey(1) & 0xFF == ord('q'):
+        faceLog = []
         break
 
 # Release handle to the webcam

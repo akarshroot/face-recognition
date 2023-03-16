@@ -1,3 +1,7 @@
-image-data/biden.jpg
-image-data/obama.jpg
-image-data/my.jpg
+image-data/2011981181_12P_TANISHA GUPTA.jpg
+image-data/2011981278_12P_AKARSH TRIPATHI.jpg
+image-data/2011981106.jpg
+image-data/2011981198.jpg
+image-data/2011981165_11P_MANSAGAR SURI.jpg
+image-data/2011981286_12P_SATYAM NEGI.jpg
+image-data/Dr. Vijay Kumar Sinha.jpg

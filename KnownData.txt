@@ -1,3 +1,7 @@
-46th US President, Age: 78, Gender: Male, Race: White
-44th US President, Age: 60, Gender: Male, Race: African American
-Student, Age: 19, Gender: Male, Race: South Asian
+Student, Batch: 2020, Branch: CSE, ID: 2011981181, Section: 12P
+Student, Batch: 2020, Branch: CSE, ID: 2011981278, Section: 12P
+Student, Batch: 2020, Branch: CSE, ID: 2011981106, Section: 12P
+Student, Batch: 2020, Branch: CSE, ID: 2011981198, Section: 32P
+Student, Batch: 2020, Branch: CSE, ID: 2011981165, Section: 11P
+Student, Batch: 2020, Branch: CSE, ID: 2011981286, Section: 12P
+Teacher
