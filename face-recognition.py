@@ -81,7 +81,7 @@ face_encodings = []
 face_names = []
 process_this_frame = True
 
-vs = WebcamVideoStream(src=0).start()
+vs = WebcamVideoStream(src=1).start()
 
 os.system( 'cls' )
 faceLog = []
@@ -179,6 +179,7 @@ while True:
         # cv2.putText(frame, name, (left + 6, bottom - 6), font, 0.75, (0, 84, 211), 1)
         cv2.putText(frame, name, (right + adjuster + 20, top + 35), font, 0.75, (0, 84, 211), 1)
         it = 0
+        cv2.rectangle(frame, (right + 5, top + 40), (right + width_of_name_container + 35, top + 60 + len(person_data)*(height_of_name_container + 5)), (0, 0, 0), cv2.FILLED)
         for i in person_data:
             it += (height_of_name_container + 5)
             cv2.putText(frame, i, (right + 20, top + 45 + it), font, 0.5, (255, 255, 255), 1)
